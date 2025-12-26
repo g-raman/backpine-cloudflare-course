@@ -6,7 +6,8 @@
     "build:db": "pnpm --filter @repo/data-ops run build",
     "build:frontend": "pnpm --filter user-application run build",
     "dev:frontend": "pnpm --filter user-application run dev",
-    "dev:services": "pnpm --filter data-service run dev"
+    "dev:services": "pnpm --filter data-service run dev",
+    "deploy:frontend": "pnpm --filter user-application run deploy"
   },
   "keywords": [],
   "author": "",
