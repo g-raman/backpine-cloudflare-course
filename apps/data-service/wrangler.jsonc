@@ -28,7 +28,7 @@
 	"queues": {
 		"consumers": [
 			{
-				"queue": "smart-links-data-queue"
+				"queue": "smart-links-queue-staging"
 			}
 		],
 	}
