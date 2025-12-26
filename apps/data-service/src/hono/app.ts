@@ -1,4 +1,6 @@
+import { getDestinationForCountry } from '@/helpers/route-ops';
 import { getLink } from '@repo/data-ops/queries/links';
+import { cloudflareInfoSchema } from '@repo/data-ops/zod-schema/links';
 import { Hono } from 'hono';
 import { Bindings } from 'hono/types';
 
@@ -8,6 +10,19 @@ App.get('/:id', async (c) => {
 	const id = c.req.param('id');
 
 	const linkInfo = await getLink(id);
+	if (!linkInfo) {
+		return c.text('Destination not found', 404);
+	}
 
-	return c.json(linkInfo);
+	const cfHeaders = cloudflareInfoSchema.safeParse(c.req.raw.cf);
+
+	if (!cfHeaders.success) {
+		return c.text('Invalid Cloudflare headers', 400);
+	}
+
+	const headers = cfHeaders.data;
+	console.log(headers);
+	const destination = getDestinationForCountry(linkInfo, headers.country);
+
+	return c.redirect(destination);
 });
