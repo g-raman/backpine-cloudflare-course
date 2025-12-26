@@ -18,6 +18,9 @@
 			"class_name": "DestinationEvaluationWorkflow"
 		}
 	],
+	"browser": {
+		"binding": "VIRTUAL_BROWSER"
+	},
 	"kv_namespaces": [
 		{
 			"binding": "CACHE",

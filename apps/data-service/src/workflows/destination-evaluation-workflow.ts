@@ -1,10 +1,23 @@
 import { WorkerEntrypoint, WorkflowEvent, WorkflowStep } from 'cloudflare:workers';
+import puppeteer from '@cloudflare/puppeteer';
 
-export class DestinationEvaluationWorkflow extends WorkerEntrypoint<Env, unknown> {
-	async run(event: Readonly<WorkflowEvent<unknown>>, step: WorkflowStep) {
+export class DestinationEvaluationWorkflow extends WorkerEntrypoint<Env, DestinationStatusEvaluationParams> {
+	async run(event: Readonly<WorkflowEvent<DestinationStatusEvaluationParams>>, step: WorkflowStep) {
 		const collectedData = await step.do('renderd-destination-page-data', async () => {
+			const browser = await puppeteer.launch(this.env.VIRTUAL_BROWSER);
+			const page = await browser.newPage();
+			const response = await page.goto(event.payload.destinationUrl);
+
+			await page.waitForNetworkIdle();
+
+			const bodyText = (await page.$eval('body', (el) => el.innerText)) as string;
+			const html = await page.content();
+			const status = response ? response.status() : 0;
+
 			return {
-				data: 'dummy-data',
+				bodyText,
+				html,
+				status,
 			};
 		});
 
