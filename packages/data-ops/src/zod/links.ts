@@ -25,6 +25,7 @@ export const linkSchema = z.object({
   created: z.string(),
   updated: z.string(),
 });
+
 export const createLinkSchema = linkSchema.omit({
   created: true,
   updated: true,
@@ -58,8 +59,6 @@ export const durableObjectGeoClickArraySchema = z.array(
 export type DurableObjectGeoClickSchemaType = z.infer<
   typeof durableObjectGeoClickSchama
 >;
-
 export type CloudflareInfoSchemaType = z.infer<typeof cloudflareInfoSchema>;
-
 export type LinkSchemaType = z.infer<typeof linkSchema>;
 export type CreateLinkSchemaType = z.infer<typeof createLinkSchema>;
