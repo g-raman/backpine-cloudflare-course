@@ -31,5 +31,12 @@
 				"queue": "smart-links-queue-staging"
 			}
 		],
+		"producers": [
+			{
+				"binding": "QUEUE",
+				"queue": "smart-links-queue-staging",
+				"remote": true
+			}
+		]
 	}
 }
