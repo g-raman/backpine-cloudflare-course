@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "db:build": "pnpm --filter @repo/data-ops run build",
+    "build:db": "pnpm --filter @repo/data-ops run build",
+    "build:frontend": "pnpm --filter user-application run build",
     "dev:frontend": "pnpm --filter user-application run dev",
     "dev:services": "pnpm --filter data-service run dev"
   },
