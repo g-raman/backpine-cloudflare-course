@@ -7,7 +7,7 @@ export const App = new Hono<{ Bindings: Env }>();
 App.get('/:id', async (c) => {
 	const id = c.req.param('id');
 
-	const linkInfo = getLink(id);
+	const linkInfo = await getLink(id);
 
 	return c.json(linkInfo);
 });
