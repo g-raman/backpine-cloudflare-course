@@ -1,7 +1,7 @@
 /**
- * For more details on how to configure Wrangler, refer to:
- * https://developers.cloudflare.com/workers/wrangler/configuration/
- */
+* For more details on how to configure Wrangler, refer to:
+* https://developers.cloudflare.com/workers/wrangler/configuration/
+*/
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "data-service",
@@ -37,6 +37,12 @@
 			"database_id": "4b73eec0-73f8-4373-8321-cba74ced50bf",
 			"remote": true,
 		},
+	],
+	"r2_buckets": [
+		{
+			"bucket_name": "smart-links-eval-staging",
+			"binding": "BUCKET"
+		}
 	],
 	"queues": {
 		"consumers": [
