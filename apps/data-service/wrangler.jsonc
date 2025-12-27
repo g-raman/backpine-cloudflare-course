@@ -21,6 +21,9 @@
 	"browser": {
 		"binding": "VIRTUAL_BROWSER"
 	},
+	"ai": {
+		"binding": "AI"
+	},
 	"kv_namespaces": [
 		{
 			"binding": "CACHE",
